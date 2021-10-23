@@ -65,7 +65,7 @@ public class Test {
 		HuffmanTreeBuilder builder = new HuffmanTreeBuilder();
 		String inputString = "Test Quarry for the next level of testing with blanks and punctuation.Test Quarry for the next level of testing with blanks and punctuation.Test Quarry for the next level of testing with blanks and punctuation.Test Quarry for the next level of testing with blanks and punctuation.Test Quarry for the next level of testing with blanks and punctuation.Test Quarry for the next level of testing with blanks and punctuation.Test Quarry for the next level of testing with blanks and punctuation.Test Quarry for the next level of testing with blanks and punctuation.Test Quarry for the next level of testing with blanks and punctuation.Test Quarry for the next level of testing with blanks and punctuation.Test Quarry for the next level of testing with blanks and punctuation.Test Quarry for the next level of testing with blanks and punctuation.";
 		builder.buildFrequencyMap(inputString);
-		HuffmanTree tree = null;
+		HuffmanTree tree;
 		try {
 			tree = builder.buildTree();
 		} catch (IllegalInputException e1) {
@@ -87,6 +87,8 @@ public class Test {
 		String s = tree.decodeBinary(tree.encodeBinary());
 		System.out.println("Decoded string: " + s);
 		System.out.println("Decoding success: " + s.equals(inputString));
+
+		System.out.printf("Original string size: ~%d, huffman decoded byte size: ~%d%n", inputString.length(), encodedBinary.length * 4);
 	}
 
 	public static void readCodeTest() {

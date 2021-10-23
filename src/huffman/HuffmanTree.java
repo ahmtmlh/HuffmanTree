@@ -12,13 +12,11 @@ import java.util.Map;
 import huffman.exception.IllegalInputException;
 
 public class HuffmanTree implements Serializable{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -6230183299955938091L;
 	private HuffmanNode root;
 	// Don't save the characterCodeMap and the actual text to a file.
-	private transient Map<Character, String> characterCodeMap;
+	private final transient Map<Character, String> characterCodeMap;
 	private transient String code;
 	
 	public HuffmanTree(HuffmanNode root, String code) {
@@ -103,7 +101,7 @@ public class HuffmanTree implements Serializable{
 				throw new IllegalInputException("Input string must only have 1 or 0");
 			}
 			if(!temp.isEmptyData()) {
-				sb.append(Character.toString(temp.getData())); 
+				sb.append(temp.getData());
 				temp = root;
 			}
 		}
@@ -115,7 +113,7 @@ public class HuffmanTree implements Serializable{
 		Node temp = root;
 		for (int i = 0; i < input.length-1; i++) {
 			int bitCounter = 0;
-			// For the last number taht will go to the array.
+			// For the last number that will go to the array.
 			// Number of bits that are used by the last number is contained in the next position of the array
 			// Doing this prevents data corruption at the end of the message.
 			if(i == input.length-2) {

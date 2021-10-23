@@ -40,10 +40,10 @@ public class HuffmanTreeBuilder {
 	}
 	
 	private void buildFrequencyList() {
-		nodeQueue = new PriorityQueue<>(1, (Node n1, Node n2)->Integer.compare(n1.getFreq(), n2.getFreq()));
+		nodeQueue = new PriorityQueue<>(1, Comparator.comparingInt(Node::getFreq));
 		
 		List<Entry<Character, Integer>> sortedList = new ArrayList<>(frequencyMap.entrySet());
-		Collections.sort(sortedList, Comparator.comparing(Map.Entry::getValue));
+		sortedList.sort(Entry.comparingByValue());
 		
 		sortedList.forEach(item -> nodeQueue.add(new HuffmanLeaf(item)));
 	}
