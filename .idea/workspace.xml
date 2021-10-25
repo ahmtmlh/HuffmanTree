@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6b721beb-27b0-4671-96ba-f39677310a82" name="Default Changelist" comment="IntelliJ migration&#10;Code fix">
+      <change afterPath="$PROJECT_DIR$/src/huffman/HuffmanFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/huffman/HuffmanTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/huffman/HuffmanTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/huffman/HuffmanTreeBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/huffman/HuffmanTreeBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/huffman/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/huffman/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/huffman/exception/IllegalInputException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exception/IllegalInputException.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1zvUB53PiL3kNGrEL8jIw72Bsr9" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15332031" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
+  </component>
+  <component name="RunManager" selected="Application.ReadTest">
+    <configuration name="CreateTest" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="huffman.Test" />
+      <module name="HuffmanTree" />
+      <option name="PROGRAM_PARAMETERS" value="1 test-input.txt" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="huffman.Test" />
+      <module name="HuffmanTree" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReadTest" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="huffman.Test" />
+      <module name="HuffmanTree" />
+      <option name="PROGRAM_PARAMETERS" value="2 test-input.txt.huff" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.ReadTest" />
+      <item itemvalue="Application.CreateTest" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6b721beb-27b0-4671-96ba-f39677310a82" name="Default Changelist" comment="" />
+      <created>1635027916767</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1635027916767</updated>
+    </task>
+    <task id="LOCAL-00001" summary="IntelliJ migration&#10;Code fix">
+      <created>1635032894127</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1635032894127</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="IntelliJ migration&#10;Code fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="IntelliJ migration&#10;Code fix" />
+  </component>
+</project>
