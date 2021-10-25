@@ -1,69 +1,104 @@
 package huffman;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
+import java.util.Scanner;
 
-import huffman.exception.IllegalInputException;
+import exception.IllegalInputException;
 
 public class Test {
 
+	private static final int OPERATION_CREATE_FILE = 1;
+	private static final int OPERATION_READ_FILE = 2;
+
+
 	public static void main(String[] args) {
-		codeTest();
+		//codeTest();
+		ioTest(Integer.parseInt(args[0]), args[1]);
 	}
 
-	public static void codeTest2() {
-		HuffmanTreeBuilder builder = new HuffmanTreeBuilder();
-		HuffmanTree tree = null;
-		StringBuilder test = new StringBuilder();
-		try (BufferedReader br = new BufferedReader(new FileReader(new File("input2.txt")))) {
-			StringBuilder sb = new StringBuilder();
-			String line;
-			while ((line = br.readLine()) != null) {
-				sb.append(line).append("\n");
-				builder.buildFrequencyMap(line);
-				test.append(line);
+	public static void ioTest(int operation, String filename){
+
+		switch (operation){
+			case OPERATION_CREATE_FILE:
+				if (!createHuffmanFile(filename)) {
+					System.err.println("Operation failed!");
+				}
+				break;
+			case OPERATION_READ_FILE:
+				readHuffmanFile(filename);
+				break;
+			default:
+				System.err.println("Unknown operation!");
+				System.exit(1);
+				break;
+		}
+	}
+
+	private static void readHuffmanFile(String filename){
+		try {
+			HuffmanFile file = HuffmanFile.readFromFile(filename);
+			String newFileName = filename.replace(".huff", ".orig");
+
+			try(BufferedWriter bw = new BufferedWriter(new FileWriter(newFileName))){
+				bw.write(file.getText());
 			}
-			tree = builder.buildTree();
-		} catch (IllegalInputException | IOException e) {
-			e.printStackTrace();
-			return;
-		}
-		// Save tree to file in order to read it before. Java Serializable is used
-		tree.saveToFile();
-		int[] encoded = tree.encodeBinary();
-		String codeB = tree.decodeBinary(encoded);
-		System.out.println(codeB.equals(test.toString()));
-		saveTextFile(codeB, "b-out.txt");
-		// Try within sources method. No need to close streams
-		try (FileOutputStream fOut = new FileOutputStream("b-out.bin");
-				ObjectOutputStream out = new ObjectOutputStream(fOut)) {
-			out.writeObject(encoded);
-		} catch (IOException e) {
+
+			System.out.println("File contents are dumped to: " + newFileName);
+
+		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
 
-	private static void saveTextFile(String str, String filename) {
-		try (BufferedWriter out = new BufferedWriter(new FileWriter(filename))) {
-			out.write(str);
-			out.newLine();
+	private static boolean createHuffmanFile(String filename){
+		int c;
+		StringBuilder sb = new StringBuilder();
+		try(BufferedReader br = new BufferedReader(new FileReader(filename))){
+
+			while ((c = br.read()) != -1){
+				sb.append((char) c);
+			}
+
 		} catch (IOException e) {
 			e.printStackTrace();
+			return false;
 		}
+
+		HuffmanTreeBuilder builder = new HuffmanTreeBuilder();
+		builder.buildFrequencyMap(sb.toString());
+
+		HuffmanTree tree;
+		try {
+			tree = builder.buildTree();
+		} catch (IllegalInputException e) {
+			e.printStackTrace();
+			return false;
+		}
+
+		int[] encodedBinary = tree.encodeBinary();
+		HuffmanFile file = new HuffmanFile(tree, encodedBinary);
+
+		try {
+			file.saveFile(filename + ".huff");
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+
+		return true;
 	}
 
 	public static void codeTest() {
 		HuffmanTreeBuilder builder = new HuffmanTreeBuilder();
-		String inputString = "Test Quarry for the next level of testing with blanks and punctuation.Test Quarry for the next level of testing with blanks and punctuation.Test Quarry for the next level of testing with blanks and punctuation.Test Quarry for the next level of testing with blanks and punctuation.Test Quarry for the next level of testing with blanks and punctuation.Test Quarry for the next level of testing with blanks and punctuation.Test Quarry for the next level of testing with blanks and punctuation.Test Quarry for the next level of testing with blanks and punctuation.Test Quarry for the next level of testing with blanks and punctuation.Test Quarry for the next level of testing with blanks and punctuation.Test Quarry for the next level of testing with blanks and punctuation.Test Quarry for the next level of testing with blanks and punctuation.";
+		String inputString = "Test Quarry for the next level of testing with blanks and punctuation.Test Quarry for" +
+				" the next level of testing with blanks and punctuation.Test Quarry for the next level of testing" +
+				" with blanks and punctuation.Test Quarry for the next level of testing with blanks and punctuation" +
+				".Test Quarry for the next level of testing with blanks and punctuation.Test Quarry for the next " +
+				"level of testing with blanks and punctuation.Test Quarry for the next level of testing with blanks" +
+				" and punctuation.Test Quarry for the next level of testing with blanks and punctuation.Test Quarry" +
+				" for the next level of testing with blanks and punctuation.Test Quarry for the next level of testing" +
+				" with blanks and punctuation.Test Quarry for the next level of testing with blanks and punctuation." +
+				"Test Quarry for the next level of testing with blanks and punctuation.";
 		builder.buildFrequencyMap(inputString);
 		HuffmanTree tree;
 		try {
@@ -97,10 +132,11 @@ public class Test {
 		try (ObjectInputStream input = new ObjectInputStream(
 				new BufferedInputStream(new FileInputStream("b-out.bin")))){
 			code = (int[])input.readObject();
-		} catch (IOException | ClassNotFoundException e1) {
-			e1.printStackTrace();
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+			return;
 		}
-		
+
 		try (ObjectInputStream input = new ObjectInputStream(
 				new BufferedInputStream(new FileInputStream("tree.huff")))) {
 			HuffmanTree tree = (HuffmanTree) input.readObject();
@@ -108,7 +144,8 @@ public class Test {
 			System.out.println(decoded);
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
-		} 
+		}
+
 	}
 
 }

@@ -3,11 +3,10 @@ package huffman;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.PriorityQueue;
-import huffman.exception.IllegalInputException;
+import exception.IllegalInputException;
 
 import java.util.Queue;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.LinkedHashMap;
@@ -44,7 +43,7 @@ public class HuffmanTreeBuilder {
 		
 		List<Entry<Character, Integer>> sortedList = new ArrayList<>(frequencyMap.entrySet());
 		sortedList.sort(Entry.comparingByValue());
-		
+
 		sortedList.forEach(item -> nodeQueue.add(new HuffmanLeaf(item)));
 	}
 	

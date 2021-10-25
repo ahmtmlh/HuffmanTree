@@ -1,4 +1,4 @@
-package huffman.exception;
+package exception;
 
 public class IllegalInputException extends Exception {
 

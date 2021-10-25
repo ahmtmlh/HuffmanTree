@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import huffman.exception.IllegalInputException;
+import exception.IllegalInputException;
 
 public class HuffmanTree implements Serializable{
 
