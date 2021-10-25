@@ -4,10 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import exception.IllegalInputException;
 
@@ -18,7 +15,7 @@ public class HuffmanTree implements Serializable{
 	// Don't save the characterCodeMap and the actual text to a file.
 	private final transient Map<Character, String> characterCodeMap;
 	private transient String code;
-	
+
 	public HuffmanTree(HuffmanNode root, String code) {
 		this(root);
 		this.setCode(code);
@@ -37,77 +34,38 @@ public class HuffmanTree implements Serializable{
 	public void setRoot(HuffmanNode root) {
 		this.root = root;
 	}
-	
-	/**
-	 * THIS FUNCTION ENCODES TEXT AS ANOTHER TEXT OF 1 AND 0
-	 * THIS IS FOR DEBUGGING ONLY, HAS NO COMPRESSION PURPOSES
-	 * @return String of encoded text. Only 1 and 0
-	 */
-	
-	public String encode() {
-		StringBuilder sb = new StringBuilder();
-		for(char c : code.toCharArray()) {
-			sb.append(characterCodeMap.get(c));
-		}	
-		return sb.toString();
-	}
 
 	public int[] encodeBinary() {
 		List<Integer> list = new ArrayList<>();
 		int count = 0;
-		int chunk = 0;
+		int word = 0;
 		for(char c : code.toCharArray()) {
 			String current = characterCodeMap.get(c);
+
 			for(char ch : current.toCharArray()) {
 				if(count == 31) {
-					list.add(chunk);
-					chunk = 0;
+					list.add(word);
+					word = 0;
 					count = 0;
 				}
-				int bit = Integer.parseInt(Character.toString(ch));
-				chunk |= bit;
-				chunk = chunk << 1;
+				int bit = ch - '0';
+				word |= bit;
+				word = word << 1;
 				count++;
 			}
 		}
-		if(count != 0) {
-			list.add(chunk);
-		}
+
+		if(count != 0)
+			list.add(word);
+
 		list.add(count);
-		int[] ret = new int[list.size()];
-		for (int i = 0; i < ret.length; i++) {
-			ret[i] = list.get(i);
+		int[] arr = new int[list.size()];
+		for (int i = 0; i < arr.length; i++) {
+			arr[i]  = list.get(i);
 		}
-		return ret;
+		return arr;
 	}
-	
-	/**
-	 * THIS FUNCTION ONLY DECODES INPUT GIVEN AS STRING
-	 * STRING MUST BE IN 1 & 0 FORM. DEBUGGING ONLY
-	 * @param inputStr Input String as the encoded text. 
-	 * @return Decoded text.
-	 */
-	
-	public String decode(String inputStr) throws IllegalInputException{
-		StringBuilder sb = new StringBuilder();
-		Node temp = root;
-		for (char c : inputStr.toCharArray()) {
-			if(c == '1') {
-				temp = temp.getRight();
-			} else if (c == '0'){
-				temp = temp.getLeft();
-			}
-			else {
-				throw new IllegalInputException("Input string must only have 1 or 0");
-			}
-			if(!temp.isEmptyData()) {
-				sb.append(temp.getData());
-				temp = root;
-			}
-		}
-		return sb.toString();
-	}
-	
+
 	public String decodeBinary(int[] input) {
 		StringBuilder sb = new StringBuilder();
 		Node temp = root;
@@ -141,11 +99,11 @@ public class HuffmanTree implements Serializable{
 		if(node == null) {
 			return;
 		}
-		
+
 		if(node instanceof HuffmanLeaf) {
 			characterCodeMap.put(node.getData(), path);
 		}
-		
+
 		generateMap(path+"0", node.getLeft());
 		generateMap(path+"1", node.getRight());
 	}

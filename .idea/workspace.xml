@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b721beb-27b0-4671-96ba-f39677310a82" name="Default Changelist" comment="IntelliJ migration&#10;Code fix">
-      <change afterPath="$PROJECT_DIR$/src/huffman/HuffmanFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+    <list default="true" id="6b721beb-27b0-4671-96ba-f39677310a82" name="Default Changelist" comment="IntelliJ migration">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/huffman/HuffmanTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/huffman/HuffmanTree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/huffman/HuffmanTreeBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/huffman/HuffmanTreeBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/huffman/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/huffman/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/huffman/exception/IllegalInputException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exception/IllegalInputException.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +86,21 @@
       <option name="project" value="LOCAL" />
       <updated>1635032894127</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="HuffmanFile desteği eklendi. Text dosyaları artık sıkıştırılabiliyor">
+      <created>1635179342258</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1635179342258</updated>
+    </task>
+    <task id="LOCAL-00003" summary="IntelliJ migration">
+      <created>1635179422894</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1635179422894</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -105,6 +117,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="IntelliJ migration&#10;Code fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="IntelliJ migration&#10;Code fix" />
+    <MESSAGE value="HuffmanFile desteği eklendi. Text dosyaları artık sıkıştırılabiliyor" />
+    <MESSAGE value="IntelliJ migration" />
+    <option name="LAST_COMMIT_MESSAGE" value="IntelliJ migration" />
   </component>
 </project>

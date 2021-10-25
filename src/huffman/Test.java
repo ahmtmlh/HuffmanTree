@@ -51,6 +51,7 @@ public class Test {
 	}
 
 	private static boolean createHuffmanFile(String filename){
+		long old = System.currentTimeMillis();
 		int c;
 		StringBuilder sb = new StringBuilder();
 		try(BufferedReader br = new BufferedReader(new FileReader(filename))){
@@ -63,9 +64,12 @@ public class Test {
 			e.printStackTrace();
 			return false;
 		}
-
+		System.out.println("Read file time: "  + (System.currentTimeMillis() - old) + "ms");
+		old = System.currentTimeMillis();
 		HuffmanTreeBuilder builder = new HuffmanTreeBuilder();
 		builder.buildFrequencyMap(sb.toString());
+		System.out.println("Frequency Map build time: "  + (System.currentTimeMillis() - old) + "ms");
+		old = System.currentTimeMillis();
 
 		HuffmanTree tree;
 		try {
@@ -75,7 +79,14 @@ public class Test {
 			return false;
 		}
 
+		System.out.println("Huffman Tree build time: "  + (System.currentTimeMillis() - old) + "ms");
+		old = System.currentTimeMillis();
+
 		int[] encodedBinary = tree.encodeBinary();
+
+		System.out.println("Binary encoding time: "  + (System.currentTimeMillis() - old) + "ms");
+		old = System.currentTimeMillis();
+
 		HuffmanFile file = new HuffmanFile(tree, encodedBinary);
 
 		try {
@@ -84,6 +95,8 @@ public class Test {
 			e.printStackTrace();
 			return false;
 		}
+
+		System.out.println("Huffman File save time: "  + (System.currentTimeMillis() - old) + "ms");
 
 		return true;
 	}
